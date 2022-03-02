@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -alpboot
+ls -lapboot
