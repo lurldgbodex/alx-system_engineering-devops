@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -lapboot
+ls -la ../.. /boot
