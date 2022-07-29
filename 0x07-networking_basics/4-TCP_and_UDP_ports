@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Shows Listening sockets
+# and also show the PID and name of the program to which each socket belongs
+sudo netstat -plnt
