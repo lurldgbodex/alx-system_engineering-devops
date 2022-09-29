@@ -1,4 +1,4 @@
-nstall and add custom header to nginx
+# install and add custom header to nginx
 
 package { 'nginx':
   ensure => 'installed',
