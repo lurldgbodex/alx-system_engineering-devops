@@ -1,4 +1,5 @@
-ommand to make an nginx server listen on port 80
+#!/usr/bin/env bash
+# command to make an nginx server listen on port 80
 apt-get -y update
 apt-get -y install nginx
 ufw allow 'Nginx HTTP'
