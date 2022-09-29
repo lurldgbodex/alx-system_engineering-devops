@@ -1,19 +1,35 @@
-# install and add custom header to nginx
-
-package { 'nginx':
-  ensure => 'installed',
+# puppet manifest creating a custom HTTP header response
+exec { 'apt-get-update':
+  command => '/usr/bin/apt-get update',
 }
 
-file_line { 'add_header':
+package { 'nginx':
+  ensure  => installed,
+  require => Exec['apt-get-update'],
+}
+
+file_line { 'a':
   ensure  => 'present',
-  require => Package['nginx'],
   path    => '/etc/nginx/sites-enabled/default',
-  after   => 'root /var/www/html;',
-  line    => 'add_header X-Served-By $HOSTNAME;',
-  notify  =>  Service['nginx'],
+  after   => 'listen 80 default_server;',
+  line    => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
+  require => Package['nginx'],
+}
+
+file_line { 'b':
+  ensure  => 'present',
+  path    => '/etc/nginx/sites-enabled/default',
+  after   => 'listen 80 default_server;',
+  line    => 'add_header X-Served-By $hostname;',
+  require => Package['nginx'],
+}
+
+file { '/var/www/html/index.html':
+  content => 'Hello World!',
+  require => Package['nginx'],
 }
 
 service { 'nginx':
   ensure  => running,
-  require => File_line['add_header'],
+  require => Package['nginx'],
 }
