@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""using REST API, returns information 
+"""using REST API, returns information
 about a given employee's Todo list progress
 """
 
